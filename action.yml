@@ -5,6 +5,10 @@ inputs:
     description: 'Default time to run for (24h)'
     required: false
     default: '1440'
+  user:
+    required: false
+  password:
+    required: false
 outputs:
   results:
     description: 'placeholder'
@@ -12,7 +16,8 @@ runs:
   using: 'composite'
   steps:
     - shell: bash
-      run: docker login --username ${{ secrets.DOCKER_USER }} --passwrdo ${{ secrets.DOCKER_PAT }}
+      if: ${{ inputs.user }} != ''
+      run: docker login --username ${{ inputs.user }} --password ${{ inputs.password }}
     - shell: bash
       run: docker pull tklengyel:tsffs
     - shell: bash
