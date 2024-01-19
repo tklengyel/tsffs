@@ -21,6 +21,8 @@ runs:
     - shell: bash
       run: docker pull tklengyel/tsffs
     - shell: bash
-      run: docker build . -t tsffs
+      run: git clone --branch github_action https://github.com/tklengyel/tsffs tsffs
+    - shell: bash
+      run: docker build tsffs -t tsffs
     - shell: bash
       run: docker run -v $PWD:/github/workspace tsffs -t ${{ inputs.timeout }}
