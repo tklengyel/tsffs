@@ -21,4 +21,4 @@ runs:
     - shell: bash
       run: docker pull tklengyel/tsffs
     - shell: bash
-      run: docker run -v $PWD:/github/workspace tklengyel:tsffs -t ${{ inputs.timeout }}
+      run: docker run -v $PWD:/github/workspace tklengyel/tsffs -t ${{ inputs.timeout }}
