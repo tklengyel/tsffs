@@ -1,0 +1,16 @@
+name: Test running TSFFS as Github Action
+on:
+  push:
+jobs:
+  tsffs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: login to docker hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ DOCKER_USER }}
+          password: ${{ DOCKER_PAT }}
+
+      - uses: tklengyel/tsffs@github_action
+        with:
+          timeout: 360
