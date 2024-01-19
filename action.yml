@@ -9,11 +9,11 @@ outputs:
   results:
     description: 'placeholder'
 runs:
-  using: 'docker'
-  image: 'Dockerfile.action'
-  credentials:
-    username: ${{ secrets.DOCKER_USER }}
-    password: ${{ secrets.DOCKER_PAT }}
-  args:
-    - '-t'
-    - ${{ inputs.timeout }}
+  using: 'composite'
+  steps:
+    - shell: bash
+      run: docker login --username ${{ secrets.DOCKER_USER }} --passwrdo ${{ secrets.DOCKER_PAT }}
+    - shell: bash
+      run: docker pull tklengyel:tsffs
+    - shell: bash
+      run: docker run -v $PWD:/github/workspace tklengyel:tsffs -t ${{ inputs.timeout }}
