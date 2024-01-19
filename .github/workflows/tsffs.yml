@@ -11,6 +11,9 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PAT }}
 
+      - name: pull base image
+        run: docker pull tklengyel:tsffs
+
       - uses: tklengyel/tsffs@github_action
         with:
           timeout: 360
