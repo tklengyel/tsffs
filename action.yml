@@ -1,0 +1,16 @@
+name: 'TSFFS fuzzing action'
+description: 'Run TSFFS on target project'
+inputs:
+  timeout:
+    description: 'Default time to run for (24h)'
+    required: false
+    default: '1440'
+outputs:
+  results:
+    description: 'placeholder'
+runs:
+  using: 'docker'
+  image: 'Dockerfile.action'
+  args:
+    - '-t'
+    - ${{ inputs.timeout }}
