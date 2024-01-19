@@ -17,8 +17,4 @@ runs:
   steps:
     - shell: bash
       if: ${{ inputs.user }} != ''
-      run: echo ${{ inputs.password }} | docker login --username ${{ inputs.user }} --password-stdin
-    - shell: bash
-      run: docker pull tklengyel:tsffs
-    - shell: bash
-      run: docker run -v $PWD:/github/workspace tklengyel:tsffs -t ${{ inputs.timeout }}
+      run: docker login --username ${{ inputs.user }} --password ${{ inputs.password }} && docker pull tklengyel:tsffs && docker run -v $PWD:/github/workspace tklengyel:tsffs -t ${{ inputs.timeout }}
