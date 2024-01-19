@@ -11,6 +11,9 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile.action'
+  credentials:
+    username: ${{ secrets.DOCKER_USER }}
+    password: ${{ secrets.DOCKER_PAT }}
   args:
     - '-t'
     - ${{ inputs.timeout }}
