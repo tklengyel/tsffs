@@ -17,7 +17,7 @@ runs:
   steps:
     - shell: bash
       if: ${{ inputs.user }} != ''
-      run: docker login --username ${{ inputs.user }} --password ${{ inputs.password }}
+      run: echo ${{ inputs.password }} | docker login --username ${{ inputs.user }} --password-stdin
     - shell: bash
       run: docker pull tklengyel:tsffs
     - shell: bash
